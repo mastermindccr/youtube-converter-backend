@@ -8,8 +8,10 @@ const stream = require('stream');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// ffmpeg settings
 ffmpeg.setFfmpegPath(ffmpegPath);
 
+// express server configuration
 const app = express();
 const port = 5000;
 
@@ -18,6 +20,11 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+	res.header('Access-Control-Expose-Headers', 'Content-Disposition');
+	next();
+});
 
 app.post('/download', async (req, res) => {
 	try {
@@ -32,7 +39,7 @@ app.post('/download', async (req, res) => {
 		});
 
 		ytdl_stream.on('info', (info) => {
-			res.setHeader('x-title', `${info.videoDetails.title}.${req.body.format}`);
+			res.setHeader('Content-Disposition', `attachment; filename="${info.videoDetails.title}.${req.body.format}"`);
 		});
 
 		if (req.body.format === 'mp4') {
