@@ -1,10 +1,11 @@
-const format = require('./format.json')
+import format from './format.json' with {type: 'json'};
 
-const express = require('express');
-const { Innertube, UniversalCache, Platform } = require('youtubei.js');
-const Parser = require('./Parser');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from 'express';
+import { Innertube, UniversalCache, Platform } from 'youtubei.js';
+import Parser from './Parser.js';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import vm from 'vm';
 
 // We will initialize yt inside the startServer function
 
@@ -83,7 +84,6 @@ async function startServer() {
 		Platform.shim.eval = function (data, env) {
 			return new Promise((resolve, reject) => {
 				try {
-					const vm = require('vm');
 					// Clean up const variable redeclaration issues from youtubei's raw script code
 					let cleanedOutput = data.output.replace(/const window =.*?;/g, '');
 					cleanedOutput = cleanedOutput.replace(/const document =.*?;/g, '');

@@ -1,8 +1,8 @@
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const { spawn } = require('child_process');
-const { Readable } = require('stream');
-const fs = require('fs');
-const { Utils } = require('youtubei.js');
+import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
+import { spawn } from 'child_process';
+import { Readable } from 'stream';
+
+const ffmpegPath = ffmpegInstaller.path;
 
 async function parse_mp3(webStream, res) {
     const nodeStream = Readable.fromWeb(webStream);
@@ -50,7 +50,7 @@ async function parse_wav(webStream, res) {
     });
 }
 
-module.exports = {
+export default {
     parse_mp3,
     parse_mp4,
     parse_wav
