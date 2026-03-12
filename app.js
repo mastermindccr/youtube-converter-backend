@@ -118,8 +118,7 @@ async function startServer() {
 
 		yt = await Innertube.create({
 			cache: new UniversalCache(
-				true, // enable persistent caching
-				'./.cache' // path to cache file
+				false
 			),
 			enable_session_cache: true
 		});
