@@ -1,23 +1,11 @@
 {
     "mp3": {
-        "content-type": "audio/mpeg",
-        "ytdl-options": {
-            "quality": "highestaudio",
-            "filter": "audioonly"
-        }
+        "content-type": "audio/mpeg"
     },
     "mp4": {
-        "content-type": "video/mp4",
-        "ytdl-options": {
-            "quality": "highestvideo",
-            "filter": "audioandvideo"
-        }
+        "content-type": "video/mp4"
     },
     "wav": {
-        "content-type": "audio/wav",
-        "ytdl-options": {
-            "quality": "highestaudio",
-            "filter": "audioonly"
-        }
+        "content-type": "audio/wav"
     }
 }

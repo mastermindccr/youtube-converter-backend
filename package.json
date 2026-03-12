@@ -11,10 +11,10 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@distube/ytdl-core": "^4.16.10",
 		"@ffmpeg-installer/ffmpeg": "^1.1.0",
 		"cors": "^2.8.5",
 		"express": "^5.1.0",
-		"fluent-ffmpeg": "^2.1.3"
+		"jintr": "^3.3.1",
+		"youtubei.js": "github:LuanRT/YouTube.js"
 	}
 }
