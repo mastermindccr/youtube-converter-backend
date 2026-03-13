@@ -8,11 +8,11 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import vm from 'vm';
 
-// let visitorData = 'CgtlQ2I5Yy04TFV4ayju1s7NBjIKCgJUVxIEGgAgSQ%3D%3D';
-// let poToken = 'Mng_BteeHMvt8j86gOHu62htfGU1MlPkPqR9HT65UK-uP4K-KOfvEY7DTuX1pFWgoSIjXhvoN3ks5XAsVkdLRExH-N8Fl-bQfeyHTPbtibbmEC5JNywIdiyRWUd4nKd8lHqISNIERA9rpQ1x-s2OdSnpd1ejjdzNO-Y=';
+let visitorData = 'CgtlQ2I5Yy04TFV4ayju1s7NBjIKCgJUVxIEGgAgSQ%3D%3D';
+let poToken = 'Mng_BteeHMvt8j86gOHu62htfGU1MlPkPqR9HT65UK-uP4K-KOfvEY7DTuX1pFWgoSIjXhvoN3ks5XAsVkdLRExH-N8Fl-bQfeyHTPbtibbmEC5JNywIdiyRWUd4nKd8lHqISNIERA9rpQ1x-s2OdSnpd1ejjdzNO-Y=';
 
-let visitorData;
-let poToken;
+// let visitorData;
+// let poToken;
 
 /** @type {Innertube} */
 let yt;
