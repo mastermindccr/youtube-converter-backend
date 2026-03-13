@@ -2,12 +2,17 @@ import format from './format.json' with {type: 'json'};
 
 import express from 'express';
 import { Innertube, UniversalCache, Platform } from 'youtubei.js';
+import { generate } from 'youtube-po-token-generator';
 import Parser from './Parser.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import vm from 'vm';
 
-// We will initialize yt inside the startServer function
+// let visitorData = 'CgtlQ2I5Yy04TFV4ayju1s7NBjIKCgJUVxIEGgAgSQ%3D%3D';
+// let poToken = 'Mng_BteeHMvt8j86gOHu62htfGU1MlPkPqR9HT65UK-uP4K-KOfvEY7DTuX1pFWgoSIjXhvoN3ks5XAsVkdLRExH-N8Fl-bQfeyHTPbtibbmEC5JNywIdiyRWUd4nKd8lHqISNIERA9rpQ1x-s2OdSnpd1ejjdzNO-Y=';
+
+let visitorData;
+let poToken;
 
 /** @type {Innertube} */
 let yt;
@@ -47,7 +52,9 @@ app.post('/download', async (req, res) => {
 
 		const setTitle = () => {
 			const title = info.basic_info.title;
-			res.setHeader('Content-Disposition', `attachment; filename="${title}.${req.body.format}"`);
+			console.log(`Processing download for: ${title}`);
+			const encodedTitle = encodeURIComponent(title);
+			res.setHeader('Content-Disposition', `attachment; filename*=utf-8''"${encodedTitle}.${req.body.format}"`);
 		};
 
 		setTitle();
@@ -116,11 +123,24 @@ async function startServer() {
 			});
 		};
 
+		
+		if (!visitorData || !poToken) {
+			console.log("Generating new visitor data and po token...");
+			({ visitorData, poToken } = await generate());
+		}
+		else {
+			console.log("Using existing visitor data and po token...");
+		}
+
+		console.log("Initialization complete. Starting server...");
+
 		yt = await Innertube.create({
 			cache: new UniversalCache(
 				false
 			),
-			enable_session_cache: true
+			enable_session_cache: true,
+			po_token: poToken,
+			visitor_data: visitorData
 		});
 		
 		app.listen(port, () => {

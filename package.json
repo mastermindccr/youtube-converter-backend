@@ -13,9 +13,11 @@
 	"license": "ISC",
 	"dependencies": {
 		"@ffmpeg-installer/ffmpeg": "^1.1.0",
+		"bgutils-js": "^3.2.0",
 		"cors": "^2.8.5",
 		"express": "^5.1.0",
 		"jintr": "^3.3.1",
+		"youtube-po-token-generator": "^0.6.0",
 		"youtubei.js": "github:LuanRT/YouTube.js"
 	}
 }
